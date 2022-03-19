@@ -108,7 +108,7 @@ public  class Main{
 
         if(m.find()){
             System.out.println("añadimos el menú "+ opcion +" a la venta");
-            c.añadirMenuAVenta(opcion);
+            c.addMenuAVenta(opcion);
         }else{
             System.out.println("Elecion no disponible volvemos al menú de inicio");
         }
@@ -145,10 +145,6 @@ public  class Main{
             System.out.println("error, no fue posible selecionar el menú de la lista");
         }
 
-
-
-
-        }
     }
 
     private static void mensajeFinalPrograma() {

@@ -9,9 +9,8 @@ public class ProductosRepository<Producto> extends TreeMap<String,Producto> impl
 
 
     @Override
-    public Producto meter(String s, Producto producto) {
+    public void meter(String s, Producto producto) {
         this.put(s,producto);
-        return producto;
     }
 
     @Override

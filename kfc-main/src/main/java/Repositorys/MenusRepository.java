@@ -4,17 +4,16 @@ import Models.Menu;
 
 import java.util.TreeMap;
 
-public class MenusRepository<Integer,Menu> extends  TreeMap<Integer, Menu> implements IRepository<Integer,Menu> {
+public class MenusRepository<String,Menu> extends  TreeMap<String, Menu> implements IRepository<String,Menu> {
 
 
     @Override
-    public Menu meter(Integer  s, Menu producto) {
+    public void meter(String  s, Menu producto) {
         this.put(s,producto);
-        return producto;
     }
 
     @Override
-    public Menu borrar(Integer s) {
+    public Menu borrar(String s) {
         return this.remove(s);
 
     }
@@ -26,7 +25,7 @@ public class MenusRepository<Integer,Menu> extends  TreeMap<Integer, Menu> imple
     }
 
     @Override
-    public Menu buscar(Integer s) {
+    public Menu buscar(String s) {
         return this.get(s);
     }
 }

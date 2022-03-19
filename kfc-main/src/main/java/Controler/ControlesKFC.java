@@ -98,7 +98,7 @@ public class ControlesKFC {
 
     }
 
-    public void añadirMenuAVenta(String opcion){
+    public void addMenuAVenta(String opcion){
 
         Menu m ;
         if(opcion.equalsIgnoreCase("1")){
@@ -171,7 +171,7 @@ public class ControlesKFC {
         System.out.println("3. Bebida ");
 
         //selecionar que quieres modificar imprimir opciones de plato
-        Tipo tipo = obtenerTipo();
+        Tipo tipo ;
 
         String opcion = Utiles.pedirString("Seleciona del 1 al 3").trim();
         Pattern patron = Pattern.compile("[1-3]");
@@ -233,6 +233,4 @@ public class ControlesKFC {
 
     }
 
-    private Tipo obtenerTipo() {
-    }
 }

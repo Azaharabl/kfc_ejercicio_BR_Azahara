@@ -18,10 +18,6 @@ public class Menu {
     public Menu(String nombre, Producto principal,Producto complemento, Producto bebida) {
         this.id = numeroMenus++;
         this.nombre = nombre;
-        //todo calcular el preocion segun producto y cantidad
-        //todo calcular categoria segun producto
-
-        this.tipo = tipo;
         this.principal = principal;
         this.complemento = complemento;
         this.bebida = bebida;

@@ -3,29 +3,38 @@ package Models;
 import java.util.ArrayList;
 
 public class Venta {
-    private ArrayList<LineaDeVenta> lineas = new ArrayList<LineaDeVenta>();
+    private ArrayList<Menu> lineas = new ArrayList();
     private float precio;
     private int id;
     public static int NumeroVentas=0;
 
-    public Venta(ArrayList<LineaDeVenta> lineas, float precio, int id) {
+    public Venta(ArrayList<Menu> lineas) {
         this.lineas = lineas;
-        //todo hacer el precio calculado autonumericamente
-        this.precio = precio;
+        this.precio = calcularPrecio(lineas);
         this.id = NumeroVentas++;
     }
 
-    public ArrayList<LineaDeVenta> getLineas() {
+    private float calcularPrecio(ArrayList<Menu> lineas) {
+        float precio = 0;
+        float aux = 0;
+        for (int i = 0; i < lineas.size(); i++) {
+            aux = lineas.get(i).getPrecio();
+            precio+=aux;
+        }
+        return precio;
+    }
+
+    public ArrayList<Menu> getLineas() {
         return lineas;
     }
 
-    public void setLineas(ArrayList<LineaDeVenta> lineas) {
+    public void setLineas(ArrayList<Menu> lineas) {
         this.lineas = lineas;
     }
 
     public float getPrecio() {
-        //todo calcular el preocion segun producto y cantidad
-        return precio;
+
+        return calcularPrecio(lineas);
     }
 
 

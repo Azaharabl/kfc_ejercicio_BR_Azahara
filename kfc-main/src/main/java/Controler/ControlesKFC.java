@@ -207,11 +207,20 @@ public class ControlesKFC {
             if (mat.matches()){
                 int opcionNumerica = Integer.parseInt(opcion);
                 if(productosRepository.get(opcionNumerica).getTipo().equals(tipo)){
-                    m.
+                    if(tipo.equals(Tipo.Bebida)){
+                        m.setBebida(productosRepository.get(opcionNumerica));
+
+                    }else if(tipo.equals(Tipo.Principal)){
+                        m.setPrincipal(productosRepository.get(opcionNumerica));
+                    }else{
+                        m.setComplemento(productosRepository.get(opcionNumerica));
+                    }
                 }
+            }else {
+                System.out.println("tu opcion no es correcta volvemos al menú ");
             }
 
-                
+
 
 
 

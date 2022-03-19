@@ -1,5 +1,5 @@
 package Enums;
 
 public enum Tipo {
-    Especial, Vegetariano , Normal
+    Principal, Complemento, Bebida
 }

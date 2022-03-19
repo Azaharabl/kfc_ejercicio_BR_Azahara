@@ -1,6 +1,10 @@
 package Models;
 
 public class LineaDeVenta {
+
+
+    //creo queno necesito la linea de venta porque cada menú se puede modificar
+
     private int id;
     private Menu menu;
     private int cantidad ;
@@ -8,10 +12,9 @@ public class LineaDeVenta {
     public static int numeroLineas=0;
 
 
-    public LineaDeVenta(int id, Menu menu, int cantidad, float precio) {
+    public LineaDeVenta(int id, Menu menu, float precio) {
         this.id =numeroLineas++ ;
         this.menu = menu;
-        this.cantidad = cantidad;
         //todo calcular el preocion segun producto y cantidad
         this.precio = precio;
     }
@@ -30,15 +33,9 @@ public class LineaDeVenta {
         this.menu = menu;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 
     public float getPrecio() {
+        float precioLinea = this.menu.getPrecio();
         return precio;
         //todo calcular el preocion segun producto y cantidad
     }

@@ -1,5 +1,8 @@
 package Models;
 
+import Enums.Categoria;
+import Enums.Tipo;
+
 import java.util.ArrayList;
 
 public class Producto {
@@ -7,13 +10,16 @@ public class Producto {
     private int  id = 0;
     private String nombre;
     private float precio;
-    private Enum tipo;
+    private Tipo tipo;
+    private Categoria categoria;
 
-    public Producto(String nombre, float precio, Enum tipo) {
+    public Producto(String nombre, float precio, Categoria categoria , Tipo tipo) {
         this.id = numeroProductos++;
         this.nombre = nombre;
         this.precio = precio;
         this.tipo = tipo;
+        this.categoria=categoria;
+
     }
 
     public static int getNumeroProductos() {
@@ -46,7 +52,5 @@ public class Producto {
         return tipo;
     }
 
-    public void setTipo(Enum tipo) {
-        this.tipo = tipo;
-    }
+
 }

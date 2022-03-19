@@ -1,10 +1,9 @@
 package Repositorys;
 
-public interface IRepository<T> {
-    T crear();
-    T borrar(T t);
-    T modificar(T t);
+public interface IRepository<K,T> {
+    T meter(K k,T t);
+    T borrar(K k);
     void borrarTodos();
-    T buscar(T t);
+    T buscar(K k);
 
 }

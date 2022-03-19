@@ -1,5 +1,7 @@
 package Models;
 
+import Enums.Categoria;
+
 import java.util.ArrayList;
 
 
@@ -8,16 +10,21 @@ public class Menu {
     private int  id = 0;
     private String nombre;
     private float precio;
-    private Enum tipo;
-    private ArrayList<Producto> listaProductos = new ArrayList<>();
+    private Categoria tipo;
+    private Producto principal;
+    private Producto complemento;
+    private Producto bebida;
 
-    public Menu(String nombre, float precio, Enum tipo, ArrayList<Producto> listaProductos) {
+    public Menu(String nombre, Producto principal,Producto complemento, Producto bebida) {
         this.id = numeroMenus++;
         this.nombre = nombre;
         //todo calcular el preocion segun producto y cantidad
-        this.precio = precio;
+        //todo calcular categoria segun producto
+
         this.tipo = tipo;
-        this.listaProductos = listaProductos;
+        this.principal = principal;
+        this.complemento = complemento;
+        this.bebida = bebida;
     }
 
     public int getId() {
@@ -38,8 +45,32 @@ public class Menu {
     }
 
     public float getPrecio() {
-        //todo calcular el preocion segun producto y cantidad
+        float precioDeMenu = principal.getPrecio()+complemento.getPrecio()+ bebida.getPrecio();
         return precio;
+    }
+
+    public Producto getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Producto principal) {
+        this.principal = principal;
+    }
+
+    public Producto getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(Producto complemento) {
+        this.complemento = complemento;
+    }
+
+    public Producto getBebida() {
+        return bebida;
+    }
+
+    public void setBebida(Producto bebida) {
+        this.bebida = bebida;
     }
 
     public void setPrecio(float precio) {
@@ -50,15 +81,9 @@ public class Menu {
         return tipo;
     }
 
-    public void setTipo(Enum tipo) {
-        this.tipo = tipo;
-    }
 
-    public ArrayList<Producto> getListaProductos() {
-        return listaProductos;
-    }
 
-    public void setListaProductos(ArrayList<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
-    }
+
+
+
 }

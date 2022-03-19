@@ -9,6 +9,15 @@ public class Venta {
     public static int NumeroVentas=0;
 
 
+    @Override
+    public String toString() {
+        return "Venta{" +
+                ", id=" + id +
+                "lineas=" + lineas +
+                ", precio=" + precio +
+                '}';
+    }
+
     public Venta() {
         this.precio = calcularPrecio(lineas);
         this.id = NumeroVentas++;

@@ -109,6 +109,7 @@ public  class Main{
         if(m.find()){
             System.out.println("añadimos el menú "+ opcion +" a la venta");
             c.addMenuAVenta(opcion);
+
         }else{
             System.out.println("Elecion no disponible volvemos al menú de inicio");
         }
@@ -123,8 +124,7 @@ public  class Main{
     }
 
     private static void borrarMenu() {
-        ControlesKFC c = getInstancia();
-        c.borrarMenu();
+            c.borrarMenu();
     }
 
     private static void confirmarVenta() {

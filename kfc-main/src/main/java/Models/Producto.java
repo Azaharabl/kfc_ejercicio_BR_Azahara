@@ -6,12 +6,24 @@ import Enums.Tipo;
 import java.util.ArrayList;
 
 public class Producto {
-    public static int numeroProductos = 0;
+    public static int numeroProductos =1;
     private int  id = 0;
     private String nombre;
-    private float precio;
+    private float precio = getPrecio();
     private Tipo tipo;
     private Categoria categoria;
+
+    @Override
+    public String toString() {
+
+        return "\n Producto{" +
+                "  id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", tipo=" + tipo +
+                ", categoria=" + categoria +
+                '}';
+    }
 
     public Producto(String nombre, float precio, Categoria categoria , Tipo tipo) {
         this.id = numeroProductos++;

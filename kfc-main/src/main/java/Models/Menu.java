@@ -23,6 +23,17 @@ public class Menu {
         this.bebida = bebida;
     }
 
+    @Override
+    public String toString() {
+        return "\n Menu{" +
+                "\n id=" + id +
+                ", precio=" + precio +
+                ", principal=" + principal +
+                ", complemento=" + complemento +
+                ", bebida=" + bebida +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

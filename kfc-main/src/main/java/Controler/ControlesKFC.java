@@ -18,19 +18,21 @@ import static java.awt.SystemColor.menu;
 public class ControlesKFC {
     // contiene su instancia y el repositorio a manejar
     private static ControlesKFC instance;
-    private ProductosRepository<Producto> productosRepository;
-    private MenusRepository<String,Menu> menuRepository;
+    private ProductosRepository<Producto> productosRepository = new ProductosRepository();
+    private MenusRepository<String,Menu> menuRepository = new MenusRepository();
     private Venta venta = new Venta();
 
     //constructor
-    public ControlesKFC(ProductosRepository productosRepository) {
-        this.productosRepository = productosRepository;
+
+
+    public ControlesKFC() {
+
     }
 
     //sigleton, instancia
     public static ControlesKFC getInstancia() {
         if(instance == null){
-            return  new ControlesKFC(new ProductosRepository());
+            return  new ControlesKFC();
         }else{
             return instance;
         }
@@ -82,33 +84,41 @@ public class ControlesKFC {
                  productosRepository.buscar("hamburguesa"),
                  productosRepository.buscar("patatas"),
                  productosRepository.buscar("cocacola"));
-         menuRepository.meter(m.getNombre(),m);
+         menuRepository.meter("clasico",m);
 
-         m = new Menu("vegetariano",
+         Menu s = new Menu("vegetariano",
                  productosRepository.buscar("hamburguesa de esparragos"),
                  productosRepository.buscar("patatas"),
                  productosRepository.buscar("cocacola"));
-         menuRepository.meter(m.getNombre(),m);
+         menuRepository.meter(s.getNombre(),s);
 
-          m = new Menu("especial",
+          Menu a = new Menu("especial",
                  productosRepository.buscar("hamburguesa deluxe"),
                  productosRepository.buscar("patatas"),
                  productosRepository.buscar("cocacola"));
-         menuRepository.meter(m.getNombre(),m);
+         menuRepository.meter(a.getNombre(),a);
 
+        System.out.println("IMPRIMIMOS MENUS Y PRODUCTOS");
+        System.out.println(menuRepository);
+        System.out.println(productosRepository);
     }
 
     public void addMenuAVenta(String opcion){
 
+
         Menu m ;
         if(opcion.equalsIgnoreCase("1")){
-            m= menuRepository.get("clasico");
+            //TODO AQUI FALLA porque el menu repositorY esta vacio, devo de haber creado otro
+            m= this.menuRepository.get("clasico");
+            System.out.println(m);
 
         }else if(opcion.equalsIgnoreCase("2")){
-            m=menuRepository.get("vegetariano");
+            m=menuRepository.buscar("vegetariano");
+            System.out.println(m);
 
         }else{
-            m=menuRepository.get("especial");
+            m=menuRepository.buscar("especial");
+            System.out.println(m);
         }
 
         venta.meterMenuEnLineas(m);
@@ -119,21 +129,23 @@ public class ControlesKFC {
     public void borrarMenu() {
 
         boolean ok = false;
+        if(venta.getLineas().size()!=0){
+            try {
+                Menu menu =selecionarUnMenuDeLista();
+                ok = true;
+            } catch (Exception e){
+                System.out.println(" Error: no hay ese menú en tu venta ");
+            }
 
-        try {
-            Menu menu =selecionarUnMenuDeLista();
-            ok = true;
-        } catch (Exception e){
-            System.out.println(" Error: no se ha podido elegir ese menú ");
-        }
-
-        if(!ok){
-            System.out.println("no se pudo selecionar menú");
+            if(!ok){
+                System.out.println(" Error: no hay ese menú en ti venta ");
+            }else{
+                venta.getLineas().remove(menu);
+                System.out.println("Realizado: menú borrado");
+            }
         }else{
-            venta.getLineas().remove(menu);
-            System.out.println("menú borrado");
+            System.out.println("Error : tu aun no tienes ningun menú en tu venta");
         }
-
 
     }
 
@@ -141,22 +153,25 @@ public class ControlesKFC {
 
         int numeroMenus = venta.getLineas().size();
 
-        System.out.println("los menús que tienes en este momento son : ");
 
-        for (int i = 0; i < numeroMenus ; i++) {
-            System.out.println("menú "+ i + venta.getLineas().get(i));
-        }
+            System.out.println("los menús que tienes en este momento son : ");
 
-        System.out.println("elige un menú a borrar entre la opcion 1 y "+ numeroMenus);
+            for (int i = 0; i < numeroMenus; i++) {
+                System.out.println("menú " + i + venta.getLineas().get(i));
+            }
 
-        String opcion = Utiles.pedirString("");
+            System.out.println("elige un menú a borrar entre la opcion 1 y " + numeroMenus);
 
-        Pattern p = Pattern.compile("/d");
-        Matcher m = p.matcher(opcion);
+            String opcion = Utiles.pedirString("");
 
-        int opcionNumerica = Integer.parseInt(opcion);
+            Pattern p = Pattern.compile("/d");
+            Matcher m = p.matcher(opcion);
 
-        return  venta.getLineas().get(opcionNumerica);
+            int opcionNumerica = Integer.parseInt(opcion);
+
+
+            return venta.getLineas().get(opcionNumerica);
+
 
 
     }

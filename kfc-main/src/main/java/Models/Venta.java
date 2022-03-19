@@ -8,8 +8,8 @@ public class Venta {
     private int id;
     public static int NumeroVentas=0;
 
-    public Venta(ArrayList<Menu> lineas) {
-        this.lineas = lineas;
+
+    public Venta() {
         this.precio = calcularPrecio(lineas);
         this.id = NumeroVentas++;
     }
@@ -29,8 +29,10 @@ public class Venta {
     }
 
     public void setLineas(ArrayList<Menu> lineas) {
+
         this.lineas = lineas;
     }
+
 
     public float getPrecio() {
 
@@ -47,4 +49,7 @@ public class Venta {
         return NumeroVentas;
     }
 
+    public void meterMenuEnLineas(Menu m) {
+        this.lineas.add(m);
+    }
 }

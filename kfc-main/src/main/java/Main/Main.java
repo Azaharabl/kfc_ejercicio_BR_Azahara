@@ -1,6 +1,7 @@
 package Main;
 
 import Controler.ControlesKFC;
+import Models.Menu;
 import Util.Utiles;
 
 import java.io.Console;
@@ -59,7 +60,7 @@ public  class Main{
                 switch (opcion){
                         case"1":
                             System.out.println("1. Añadir un menú a la venta.");
-                            addMenú();
+                            addMenu();
                         break;
                         case"2":
                             System.out.println("2. Borrar un menú de la venta.");
@@ -79,15 +80,10 @@ public  class Main{
                               salir();
                         break;
 
-
-
-
                 }
             }else {
                 System.out.println("Eleción no valida");
             }
-
-
 
         }while(true);
 
@@ -96,12 +92,39 @@ public  class Main{
 
     }
 
-    private static void addMenú() {
+    private static void addMenu() {
+
+        //mostramos menú
+        System.out.println(" \n Las opciones  ne menú que puedes elegir son: ");
+        System.out.println("1. Clasico ");
+        System.out.println("2. Vegano ");
+        System.out.println("3. Deluxe. ");
+        System.out.println(" Todas las opciones pueden modificarse una vez escogidas ");
+
+        //pedir opcion
+        String opcion = Utiles.pedirString("Seleciona del 1 al 3").trim();
+        Pattern p = Pattern.compile("[1-3]");
+        Matcher m = p.matcher(opcion);
+
+        if(m.find()){
+            System.out.println("añadimos el menú "+ opcion +" a la venta");
+            c.añadirMenuAVenta(opcion);
+        }else{
+            System.out.println("Elecion no disponible volvemos al menú de inicio");
+        }
+
+
+
     }
 
     private static void salir() {
         System.out.println("Salio del programa");
         System.exit(0);
+    }
+
+    private static void borrarMenu() {
+        ControlesKFC c = getInstancia();
+        c.borrarMenu();
     }
 
     private static void confirmarVenta() {
@@ -110,14 +133,23 @@ public  class Main{
     }
 
     private static void modificarMenu() {
-        System.out.println("Eleción no disponible");
+        boolean ok = false;
+        Menu m ;
+        try {
+            m = c.selecionarUnMenuDeLista();
+            ok = true;
+
+            c.modificarMenu(m);
+
+        }catch (Exception e) {
+            System.out.println("error, no fue posible selecionar el menú de la lista");
+        }
+
+
+
+
+        }
     }
-
-    private static void borrarMenu() {
-        System.out.println("Eleción no disponible");
-    }
-
-
 
     private static void mensajeFinalPrograma() {
         System.out.println("Finalizaste el programa kfc");
@@ -126,5 +158,6 @@ public  class Main{
     private static void mensajeInicioPrograma() {
         System.out.println("Comenzaste el inicio del programa kfc");
         ControlesKFC c = getInstancia();
+        c.iniciarDatosDelRepositorio();
     }
 }

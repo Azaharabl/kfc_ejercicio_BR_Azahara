@@ -81,21 +81,21 @@ public class ControlesKFC {
          //iniciamos menus del repositorio
 
          Menu m = new Menu("clasico",
-                 productosRepository.buscar("hamburguesa"),
-                 productosRepository.buscar("patatas"),
-                 productosRepository.buscar("cocacola"));
+                 productosRepository.buscarPorK("hamburguesa"),
+                 productosRepository.buscarPorK("patatas"),
+                 productosRepository.buscarPorK("cocacola"));
          menuRepository.meter("clasico",m);
 
          Menu s = new Menu("vegetariano",
-                 productosRepository.buscar("hamburguesa de esparragos"),
-                 productosRepository.buscar("patatas"),
-                 productosRepository.buscar("cocacola"));
+                 productosRepository.buscarPorK("hamburguesa de esparragos"),
+                 productosRepository.buscarPorK("patatas"),
+                 productosRepository.buscarPorK("cocacola"));
          menuRepository.meter(s.getNombre(),s);
 
           Menu a = new Menu("especial",
-                 productosRepository.buscar("hamburguesa deluxe"),
-                 productosRepository.buscar("patatas"),
-                 productosRepository.buscar("cocacola"));
+                 productosRepository.buscarPorK("hamburguesa deluxe"),
+                 productosRepository.buscarPorK("patatas"),
+                 productosRepository.buscarPorK("cocacola"));
          menuRepository.meter(a.getNombre(),a);
 
         System.out.println("IMPRIMIMOS MENUS Y PRODUCTOS");
@@ -113,11 +113,11 @@ public class ControlesKFC {
             System.out.println(m);
 
         }else if(opcion.equalsIgnoreCase("2")){
-            m=menuRepository.buscar("vegetariano");
+            m=menuRepository.buscarPorK("vegetariano");
             System.out.println(m);
 
         }else{
-            m=menuRepository.buscar("especial");
+            m=menuRepository.buscarPorK("especial");
             System.out.println(m);
         }
 
@@ -128,24 +128,29 @@ public class ControlesKFC {
 
     public void borrarMenu() {
 
-        boolean ok = false;
-        if(venta.getLineas().size()!=0){
-            try {
-                Menu menu =selecionarUnMenuDeLista();
-                ok = true;
-            } catch (Exception e){
-                System.out.println(" Error: no hay ese menú en tu venta ");
-            }
+        try {
+            boolean ok = false;
+            if(venta.getLineas().size()!=0){
+                try {
+                    Menu menu =selecionarUnMenuDeLista();
+                    ok = true;
+                } catch (Exception e){
+                    System.out.println(" Error: no hay ese menú en tu venta ");
+                }
 
-            if(!ok){
-                System.out.println(" Error: no hay ese menú en ti venta ");
+                if(!ok){
+                    System.out.println(" Error: no hay ese menú en ti venta ");
+                }else{
+                    venta.getLineas().remove(menu);
+                    System.out.println("Realizado: menú borrado");
+                }
             }else{
-                venta.getLineas().remove(menu);
-                System.out.println("Realizado: menú borrado");
+                System.out.println("Error : tu aun no tienes ningun menú en tu venta");
             }
-        }else{
+        }catch(Exception e){
             System.out.println("Error : tu aun no tienes ningun menú en tu venta");
         }
+
 
     }
 
@@ -171,6 +176,9 @@ public class ControlesKFC {
 
 
             return venta.getLineas().get(opcionNumerica);
+
+
+
 
 
 
@@ -248,4 +256,31 @@ public class ControlesKFC {
 
     }
 
+    public void imprimirVenta() {
+        System.out.println("tu venta es : \n ");
+        System.out.println(venta.toString());
+
+    }
+
+    public void pedirCondirmacionventa() {
+
+        String s = Utiles.pedirString("¿¿quieres confirmar tu venta y pagar s / n ??");
+
+        Pattern p = Pattern.compile("S|s|n|N");
+        Matcher m = p.matcher(s);
+
+        if(m.matches()){
+            if(s.equalsIgnoreCase("s")){
+                System.out.println("venta confirmada y realizada, se le entregará el pedido en unos instantes...");
+                System.out.println("aqui tiene su tiket:");
+                imprimirVenta();
+            }
+        }else{
+            System.out.println("opcion de salida incorrecta volvemos al menú");
+        }
+
+
+
+
+    }
 }

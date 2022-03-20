@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface IRepository<K,T> {
 
-    List<T> devolverTodos();
 
     T meter(K k,T t);
 

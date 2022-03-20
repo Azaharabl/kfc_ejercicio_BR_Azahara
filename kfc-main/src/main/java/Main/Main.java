@@ -130,8 +130,14 @@ public  class Main{
     }
 
     private static void confirmarVenta() {
-        System.out.println("Eleción no disponible aún");
-        //todo hacer confirmar venta
+       //imprimir la venta con el total
+
+        c.imprimirVenta();
+
+        //pedir confirmación
+
+        c.pedirCondirmacionventa();
+
 
     }
 

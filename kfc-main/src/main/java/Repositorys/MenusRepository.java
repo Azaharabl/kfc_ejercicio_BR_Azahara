@@ -13,11 +13,7 @@ public class MenusRepository<String,Menu> extends  TreeMap<String, Menu> impleme
             return instance;
         }
     }
-    
-    @Override
-    public List<Menu> devolverTodos() {
-        return null;
-    }
+
 
     @Override
     public Menu meter(String string, Menu menu) {
@@ -35,17 +31,17 @@ public class MenusRepository<String,Menu> extends  TreeMap<String, Menu> impleme
     }
 
     /**
-     * @param entity el menú que quieres introducir ya modificado
+     * @param menu el menú que quieres introducir ya modificado
      * @return devuelve el menú si lo has cosneguido modificar y null si no ha encontrado el menu
      */
     @Override
-    public Menu modificar(Menu entity) {
+    public Menu modificar(Menu menu) {
         //todo no entoiendo por que no me funciona el get nombre
 
-        int indice = this.buscarIndicePorK(entity.getNombre());
+        int indice = this.buscarIndicePorK(menu.getNombre());
         
         if(indice>=0){
-            this.meter(entity.getNombre(),entity);
+            this.meter(menu.getNombre(),menu);
         }
         
         return null;
@@ -72,4 +68,5 @@ public class MenusRepository<String,Menu> extends  TreeMap<String, Menu> impleme
     public boolean estaVacia(){
         return this.size()==0;
     }
+
 }

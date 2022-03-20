@@ -93,6 +93,7 @@ public  class Main{
     }
 
     private static void addMenu() {
+        //todo me falla porque me inserta menús null
 
         //mostramos menú
         System.out.println(" \n Las opciones  ne menú que puedes elegir son: ");
@@ -124,11 +125,13 @@ public  class Main{
     }
 
     private static void borrarMenu() {
+        //todo me da fallo al borrar un menñu que no existe
             c.borrarMenu();
     }
 
     private static void confirmarVenta() {
-        System.out.println("Eleción no disponible");
+        System.out.println("Eleción no disponible aún");
+        //todo hacer confirmar venta
 
     }
 

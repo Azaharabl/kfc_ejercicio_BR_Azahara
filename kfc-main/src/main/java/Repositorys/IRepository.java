@@ -1,9 +1,20 @@
 package Repositorys;
 
+import java.util.List;
+
 public interface IRepository<K,T> {
-    void meter(K k,T t);
-    T borrar(K k);
-    void borrarTodos();
-    T buscar(K k);
+
+    List<T> devolverTodos();
+
+    T meter(K k,T t);
+
+    T borrarPorK(K k);
+
+    T buscarPorK(K k);
+
+    T modificar(T entity);
+
+
+
 
 }

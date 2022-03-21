@@ -125,8 +125,21 @@ public  class Main{
     }
 
     private static void borrarMenu() {
-        //todo me da fallo al borrar un menñu que no existe
-            c.borrarMenu();
+
+            ;boolean vacio = c.comprobarQueHayMenu();
+            if (!vacio){
+                try{
+                    Menu m = c.selecionarUnMenuDeLista();
+                    c.borrarMenu(m);
+
+                }catch (Exception e){
+                    System.out.println("Elecion del menú erronea no se ha podido borrar");
+                }
+
+            }else {
+                System.out.println("no puedes borrar un menú porque no tienes ningun menú introducido ");
+            }
+
     }
 
     private static void confirmarVenta() {

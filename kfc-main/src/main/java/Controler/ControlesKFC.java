@@ -126,31 +126,10 @@ public class ControlesKFC {
 
     }
 
-    public void borrarMenu() {
+    public void borrarMenu(Menu m) {
 
-        try {
-            boolean ok = false;
-            if(venta.getLineas().size()!=0){
-                try {
-                    Menu menu =selecionarUnMenuDeLista();
-                    ok = true;
-                } catch (Exception e){
-                    System.out.println(" Error: no hay ese menú en tu venta ");
-                }
-
-                if(!ok){
-                    System.out.println(" Error: no hay ese menú en ti venta ");
-                }else{
-                    venta.getLineas().remove(menu);
-                    System.out.println("Realizado: menú borrado");
-                }
-            }else{
-                System.out.println("Error : tu aun no tienes ningun menú en tu venta");
-            }
-        }catch(Exception e){
-            System.out.println("Error : tu aun no tienes ningun menú en tu venta");
-        }
-
+        System.out.println(venta.getLineas().remove(menu));
+            System.out.println("Realizado: menú borrado");
 
     }
 
@@ -282,5 +261,9 @@ public class ControlesKFC {
 
 
 
+    }
+
+    public boolean comprobarQueHayMenu() {
+        return 0==venta.getLineas().size();
     }
 }
